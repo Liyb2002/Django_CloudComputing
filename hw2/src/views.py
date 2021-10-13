@@ -8,7 +8,7 @@ from datetime import datetime
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import UserSerializer, GroupSerializer
+from .serializers import UserSerializer, GroupSerializer, TransactionSerializer
 
 # Create your views here.
 
@@ -26,13 +26,10 @@ class add(View):
         return HttpResponse('new transaction created')
 
 
-class showAllPage(View):
-    TEMPLATE = 'index.html'
-
-    def get(self, request):
-        transactions_all=Transactions.objects.all()
-        return render(request, self.TEMPLATE, {"transactions_all": Transactions.objects.all() })
-
+class showAllPage(viewsets.ModelViewSet):
+    queryset = Transactions.objects.all()
+    serializer_class = TransactionSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 #Serializer
 class UserViewSet(viewsets.ModelViewSet):
