@@ -18,6 +18,7 @@ from django.urls import path, include
 from src import urls as app_urls
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
+from src import views
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -32,6 +33,7 @@ class UserViewSet(viewsets.ModelViewSet):
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'groups', views.GroupViewSet)
 
 
 urlpatterns = [
