@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <h1>Using Template</h1>
+</head>
+<body>
+<p>Body parts</p>
+<div id="refresh">
+{% for i in transactions_all %}
+<li>{{i.name}} spent {{i.price}} at {{i.time}}</li>
+{% endfor %}
+
+
+</div>
+</body>
+
+</html>
