@@ -24,7 +24,3 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 
     def put(self, request, *args, **kwargs):
         return self.patch(request, *args, **kwargs)
-
-class MainPage(View):
-    def get(self, request):
-        return HttpResponse("mainpage")
