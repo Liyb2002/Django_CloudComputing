@@ -8,6 +8,7 @@ from datetime import datetime
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework.response import Response
 from .serializers import UserSerializer, GroupSerializer, TransactionSerializer, Test2Serializer
 
 # Create your views here.
@@ -35,6 +36,10 @@ class Test2(viewsets.ModelViewSet):
     queryset=Test2.objects.all()
     serializer_class=Test2Serializer
     permission_classes = [permissions.IsAuthenticated]
+    
+    def post(self, request):
+        name=request.POST.get('name')
+
 
 #Serializer
 class UserViewSet(viewsets.ModelViewSet):
