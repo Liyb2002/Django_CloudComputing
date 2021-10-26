@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Transactions
+from .models import Transactions, Test2
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -18,3 +18,8 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Transactions
         fields = ['name', 'price', 'time']
+
+class Test2Serializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Test2
+        fields=['name']

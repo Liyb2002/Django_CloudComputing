@@ -16,3 +16,6 @@ class Transactions(models.Model):
 
     def _str_(self):
         return 'name:{}'.format(self.name)
+
+class Test2(models.Model):
+    name=models.CharField(max_length=20)

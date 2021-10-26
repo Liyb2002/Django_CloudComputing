@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
-from src.models import Test, Transactions
+from src.models import Test, Transactions, Test2
 from datetime import datetime
 
 #Seriliazer stuffs
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import UserSerializer, GroupSerializer, TransactionSerializer
+from .serializers import UserSerializer, GroupSerializer, TransactionSerializer, Test2Serializer
 
 # Create your views here.
 
@@ -29,6 +29,11 @@ class add(View):
 class showAllPage(viewsets.ModelViewSet):
     queryset = Transactions.objects.all()
     serializer_class = TransactionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class Test2(viewsets.ModelViewSet):
+    queryset=Test2.objects.all()
+    serializer_class=Test2Serializer
     permission_classes = [permissions.IsAuthenticated]
 
 #Serializer
