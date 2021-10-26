@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from src import urls as app_urls
 from django.contrib.auth.models import User
-from rest_framework import routers, serializers, viewsets
+from rest_framework import routers, serializers, viewsets, permissions
 from src import views
+
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -28,6 +31,18 @@ router.register(r'groups', views.GroupViewSet)
 router.register(r'transactions', views.showAllPage)
 router.register(r'Test2', views.Test2)
 
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Snippets API",
+      default_version='v1',
+      description="Test description",
+      terms_of_service="https://www.google.com/policies/terms/",
+      contact=openapi.Contact(email="contact@snippets.local"),
+      license=openapi.License(name="BSD License"),
+   ),
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
 
 
 urlpatterns = [
